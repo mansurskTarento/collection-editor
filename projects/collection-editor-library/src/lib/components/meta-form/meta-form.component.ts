@@ -37,6 +37,7 @@ export class MetaFormComponent implements OnInit, OnChanges, OnDestroy {
   generatedForm: FormGroup;
   assessmentType:any;
   treeNodeData:any;
+  formIstouched = false;
   constructor(private editorService: EditorService, public treeService: TreeService,
               public frameworkService: FrameworkService, private helperService: HelperService,
               private configService: ConfigService, private toasterService: ToasterService) {
@@ -300,8 +301,11 @@ export class MetaFormComponent implements OnInit, OnChanges, OnDestroy {
     return false;
   }
 
-  outputData(eventData: any) { 
+  outputData(eventData: any) {
     this.generatedForm = eventData;
+    if (this.formIstouched) {
+      this.markastouched();
+    }
   }
 
   markastouched() {
@@ -312,6 +316,7 @@ export class MetaFormComponent implements OnInit, OnChanges, OnDestroy {
         control!.markAsTouched();
         control!.markAsDirty();
       });
+    this.formIstouched = true;
   }
 
   onStatusChanges(event) {

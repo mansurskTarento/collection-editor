@@ -563,6 +563,7 @@ export class FancyTreeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addFromLibrary() {
     this.editorService.emitshowLibraryPageEvent('showLibraryPage');
+    this.editorService.updateFormTouched(true);
   }
   addQuestionFromLibrary() {
     this.editorService.emitshowQuestionLibraryPageEvent('showQuestionLibraryPage');
